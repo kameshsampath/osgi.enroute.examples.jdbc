@@ -1,32 +1,22 @@
-package osgi.enroute.examples.jdbc.addressbook.dao.datatypes;
+package osgi.enroute.examples.jdbc.addressbook.dao.provider;
 
-public enum PersonColumns {
+public interface PersonTable {
 
-    PERSON_ID{
+    String TABLE_NAME  = "PERSONS";
+    
+    String SQL_SELECT_ALL_PERSONS =  "SELECT * FROM "+TABLE_NAME;
 
-        @Override
-        public String columnName() {
-            return "person_id";
-        }
+    String SQL_DELETE_PERSON_BY_PK = "DELETE FROM "+TABLE_NAME+" where PERSON_ID=?";
 
-    },
-    FIRST_NAME{
+    String SQL_SELECT_PERSON_BY_PK = "SELECT * FROM "+TABLE_NAME+" where PERSON_ID=?";
 
-        @Override
-        public String columnName() {
-           
-            return "first_name";
-        }
+    String SQL_INSERT_PERSON = "INSERT INTO "+TABLE_NAME+"(FIRST_NAME,LAST_NAME) VALUES(?,?)";
 
-    },
-    LAST_NAME{
-
-        @Override
-        public String columnName() {
-            return "last_name";
-        }
-
-    };
-
-   public abstract String columnName();
+    String SQL_UPDATE_PERSON_BY_PK = "UPDATE "+TABLE_NAME+" SET FIRST_NAME=?, LAST_NAME=? WHERE PERSON_ID=?";
+    
+    String PERSON_ID ="person_id";
+    
+    String FIRST_NAME = "first_name";
+    
+    String LAST_NAME = "last_name";
 }
